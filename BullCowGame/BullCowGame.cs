@@ -10,7 +10,14 @@ namespace BullCowGame
 
         private int iBulls;
         private int iCows;
-        
+
+        public enum GuessStatus
+        {
+            Invalid,
+	        OK,
+	        Not_Isogram,
+	        Wrong_Lenght
+        };
 
         private int iMaxTries;
         private bool bIsGameWon;
@@ -82,9 +89,21 @@ namespace BullCowGame
             
         }
 
-        public void CheckGuessVailidity(string Guess)
+        
+        public GuessStatus CheckGuessVailidity(string Guess)
         {
-            //Todo
+            if (! IsIsogram(Guess))
+	        {
+                return GuessStatus.Not_Isogram;
+            }
+            else if (Guess.Length != SHidden_word.Length)
+            {
+                return GuessStatus.Wrong_Lenght;
+            }
+            else
+            {
+                return GuessStatus.OK;
+            }
         }
 
 
